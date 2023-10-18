@@ -1,21 +1,18 @@
-import requests
-from rest_framework import generics
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import Question
-from .serializers import QuestionSerializer, CountQuestions
 from .services import save_to_bd
 
 
-class QuestionsView(generics.ListAPIView):
+class QuestionsView(APIView):
     """Метод для ввода количества вопросов и возврата пердпоследнего"""
-
-    queryset = Question.objects.all()
-    serializer_class = CountQuestions
 
     def post(self, request, *args, **kwargs):
         try:
-            count_questions = int(request.POST.get('number'))
+            print(request.data)
+            print(type(request.data))
+            count_questions = request.data
         except:
             raise ValueError('Введите целое число')
 

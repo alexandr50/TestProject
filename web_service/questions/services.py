@@ -8,7 +8,7 @@ def save_to_bd(url: str, count_questions: int):
 
     while count_questions > 0:
         response = requests.get(
-            url,#'https://jservice.io/api/random',
+            url,
             params={'count': count_questions}
         )
         if response.status_code == 200:
